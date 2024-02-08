@@ -1,0 +1,5 @@
+[Setup]
+Components=ext\shellhere,gitlfs,windowsterminal,scalar
+SSHOption=ExternalOpenSSH
+CURLOption=WinSSL
+CRLFOption=CRLFCommitAsIs
