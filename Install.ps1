@@ -67,6 +67,7 @@ if (!(Test-IsCommandAvailable scoop)) {
     Write-Host '[+] Add Scoop buckets' -ForegroundColor Magenta
     Invoke-NonElevated -Command @'
 scoop bucket add nerd-fonts
+scoop bucket add java
 '@
 }
 else {
@@ -101,6 +102,10 @@ Install-WinGetPackage -Scope Machine -Id Microsoft.VisualStudioCode.Insiders
 Write-Host '[+] Install Obsidian' -ForegroundColor Magenta
 Install-WinGetPackage -Id Obsidian.Obsidian
 
+# https://www.notion.so/
+Write-Host '[+] Install Notion' -ForegroundColor Magenta
+Install-WinGetPackage -Id Notion.Notion
+
 # https://store.steampowered.com/
 Write-Host '[+] Install Steam' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Valve.Steam -Location $(Join-Path (Get-WmiObject Win32_OperatingSystem).SystemDrive Steam)
@@ -127,3 +132,38 @@ Install-WinGetPackage -Id Microsoft.Teams
 Write-Host '[+] Install Skype' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Microsoft.Skype
 #>
+# https://www.postman.com/
+Write-Host '[+] Install Postman' -ForegroundColor Magenta
+Install-WinGetPackage -Id Postman.Postman
+
+# https://www.figma.com/
+Write-Host '[+] Install Figma' -ForegroundColor Magenta
+Install-WinGetPackage -Id Figma.Figma
+
+# https://github.com/coreybutler/nvm-windows
+Write-Host '[+] Install "nvm" for Windows' -ForegroundColor Magenta
+Install-ScoopPackage -Global main/nvm; Restore-EnvPath
+
+# https://nodejs.org/en
+Write-Host '[+] Install Node.js' -ForegroundColor Magenta
+Invoke-Expression 'nvm install latest; nvm use latest'
+
+# https://devguide.python.org/versions/
+Write-Host '[+] Install Python' -ForegroundColor Magenta
+Install-ScoopPackage -Global main/python
+reg import "$(which python | Split-Path -Parent | Join-Path -ChildPath 'install-pep-514.reg')"
+
+# https://www.postgresql.org/
+Write-Host '[+] Install PostgreSQL' -ForegroundColor Magenta
+Install-ScoopPackage -Global main/postgresql
+if (![bool](Get-Service PostgreSQL -ea SilentlyContinue)) { pg_ctl register -N PostgreSQL }
+if ((Get-Service -Name PostgreSQL).Status -ne 'Running') { Start-Service -Name PostgreSQL }
+
+# https://www.oracle.com/java/
+Write-Host '[+] Install Java' -ForegroundColor Magenta
+Install-ScoopPackage -Global java/openjdk
+
+# https://groovy-lang.org/
+Write-Host '[+] Install Groovy' -ForegroundColor Magenta
+Install-ScoopPackage -Global main/groovy
+
