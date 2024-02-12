@@ -115,6 +115,9 @@ Install-WinGetPackage -Id Spotify.Spotify
 # https://discord.com/
 Write-Host '[+] Install Discord' -ForegroundColor Magenta
 Install-WinGetPackage -Id Discord.Discord
+
+Write-Host '[+] Install WhatsApp' -ForegroundColor Magenta
+Install-WinGetPackage -Source MSStore -Id 9NKSQGP7F2NH
 <#
 # https://www.microsoft.com/en-in/microsoft-teams
 Write-Host '[+] Install MS Teams' -ForegroundColor Magenta
