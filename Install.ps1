@@ -127,3 +127,10 @@ Install-WinGetPackage -Id Microsoft.Teams
 Write-Host '[+] Install Skype' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Microsoft.Skype
 #>
+# https://github.com/coreybutler/nvm-windows
+Write-Host '[+] Install "nvm" for Windows' -ForegroundColor Magenta
+Install-ScoopPackage -Global main/nvm; Restore-EnvPath
+
+# https://nodejs.org/en
+Write-Host '[+] Install Node.js' -ForegroundColor Magenta
+Invoke-Expression 'nvm install lts; nvm use lts'
