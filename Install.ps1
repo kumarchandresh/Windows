@@ -30,6 +30,10 @@ Install-WinGetPackage -Scope Machine -Id Microsoft.PowerShell; Restore-EnvPath
 Write-Host '[+] Install Oh My Posh' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id JanDeDobbeleer.OhMyPosh
 
+# https://starship.rs/
+Write-Host '[+] Install Starship' -ForegroundColor Magenta
+Install-WinGetPackage -Id Starship.Starship
+
 Write-Host '[+] Install PowerShell profiles' -ForegroundColor Magenta
 @(
     "$HOME\Documents\WindowsPowerShell",
@@ -81,8 +85,8 @@ Write-Host '[+] Install Nerd Font: Fira Code' -ForegroundColor Magenta
 Install-ScoopPackage -Global nerd-fonts/FiraCode-NF
 
 # https://github.com/microsoft/cascadia-code
-Write-Host '[+] Install Font: Cascadia Code' -ForegroundColor Magenta
-Install-ScoopPackage -Global nerd-fonts/Cascadia-Code
+# Write-Host '[+] Install Font: Cascadia Code' -ForegroundColor Magenta
+# Install-ScoopPackage -Global nerd-fonts/Cascadia-Code
 Write-Host '[+] Install Nerd Font: Cascadia Code' -ForegroundColor Magenta
 Install-ScoopPackage -Global nerd-fonts/CascadiaCode-NF
 
@@ -162,6 +166,10 @@ if ((Get-Service -Name PostgreSQL).Status -ne 'Running') { Start-Service -Name P
 # https://www.oracle.com/java/
 Write-Host '[+] Install Java' -ForegroundColor Magenta
 Install-ScoopPackage -Global java/openjdk
+
+# https://maven.apache.org/
+Write-Host '[+] Install Java' -ForegroundColor Magenta
+Install-ScoopPackage -Global main/maven
 
 # https://groovy-lang.org/
 Write-Host '[+] Install Groovy' -ForegroundColor Magenta

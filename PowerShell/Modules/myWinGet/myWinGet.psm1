@@ -18,10 +18,10 @@ function Install-WinGetPackage {
         [String] $Id,
         [Parameter()]
         [ValidateSet('Machine', 'User')]
-        [String] $Scope = 'User',
+        [String] $Scope,
         [Parameter()]
         [ValidateSet('WinGet', 'MSStore')]
-        [String] $Source = 'WinGet',
+        [String] $Source,
         [Parameter()]
         [String] $Location
     )
@@ -35,8 +35,12 @@ function Install-WinGetPackage {
         $CommandArray = $($CommandArray; 'update')
     }
 
-    $CommandArray = $($CommandArray; @('--scope', $Scope.ToLower()))
-    $CommandArray = $($CommandArray; @('--source', $Source.ToLower()))
+    if ($Scope) {
+      $CommandArray = $($CommandArray; @('--scope', $Scope.ToLower()))
+    }
+    if ($Source) {
+      $CommandArray = $($CommandArray; @('--source', $Source.ToLower()))
+    }
 
     if ($Source -eq 'MSStore') {
         $CommandArray = $($CommandArray; '--accept-package-agreements')
