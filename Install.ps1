@@ -1,3 +1,5 @@
+# ls . -Recurse -File -Filter *.ps* | Unblock-File
+
 # https://stackoverflow.com/a/49481797
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Console]::InputEncoding = [Text.UTF8Encoding]::new()
@@ -44,7 +46,7 @@ Write-Host '[+] Install PowerShell profiles' -ForegroundColor Magenta
             (Get-Item $_).Delete()
         }
         elseif (Test-IsDirectory $_) {
-            Move-Item -Path $_ -Destination "$_.Backup"
+            Move-Item -Path $_ -Destination "$_.backup"
         }
     }
     New-Item -ItemType SymbolicLink -Path $_ -Value "$PSScriptRoot\PowerShell"
@@ -57,6 +59,21 @@ if (Test-IsWinGetPackageInstalled 9N0DX20HK701) {
 }
 Write-Host '[+] Install Windows Terminal' -ForegroundColor Magenta
 Install-WinGetPackage -Id Microsoft.WindowsTerminal
+
+$terminalDir = Get-ChildItem "$env:LOCALAPPDATA\Packages" -Filter Microsoft.WindowsTerminal_* | Select-Object -First 1 -ExpandProperty FullName
+if ($terminalDir) {
+    Write-Host '[+] Install Windows Terminal settings' -ForegroundColor Magenta
+    $file = Join-Path $terminalDir 'LocalState\settings.json'
+    if (Test-Path $file) {
+        if (Test-IsSymbolicLink $file) {
+            (Get-Item $file).Delete()
+        }
+        elseif (Test-IsFile $file) {
+            Move-Item -Path $file -Destination "$file.backup" -Force
+        }
+    }
+    New-Item -ItemType SymbolicLink -Path $file -Value "$PSScriptRoot\Terminal\settings.json"
+}
 
 # https://gitforwindows.org/
 Write-Host '[+] Install "git" for Windows' -ForegroundColor Magenta
