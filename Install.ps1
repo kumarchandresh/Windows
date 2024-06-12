@@ -111,6 +111,10 @@ Install-ScoopPackage -Global nerd-fonts/CascadiaCode-NF
 Write-Host '[+] Install Notepad++' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Notepad++.Notepad++
 
+# https://neovim.io/
+Write-Host '[+] Install Neovim' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id Neovim.Neovim
+
 # https://aka.ms/vscode
 Write-Host '[+] Install Visual Studio Code' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Microsoft.VisualStudioCode
@@ -118,6 +122,14 @@ Install-WinGetPackage -Scope Machine -Id Microsoft.VisualStudioCode
 # https://aka.ms/vscode-insiders
 Write-Host '[+] Install Visual Studio Code Insiders' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Microsoft.VisualStudioCode.Insiders
+
+# https://vscodium.com/
+Write-Host '[+] Install VSCodium' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id VSCodium.VSCodium
+
+# https://vscodium.com/
+Write-Host '[+] Install VSCodium Insiders' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id VSCodium.VSCodium.Insiders
 
 # https://obsidian.md/
 Write-Host '[+] Install Obsidian' -ForegroundColor Magenta
@@ -192,3 +204,6 @@ Install-ScoopPackage -Global main/maven
 Write-Host '[+] Install Groovy' -ForegroundColor Magenta
 Install-ScoopPackage -Global main/groovy
 
+# https://go.dev/
+Write-Host '[+] Install Go' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id GoLang.Go
