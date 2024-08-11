@@ -11,6 +11,10 @@ function Git-Log($n) {
   git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short -$n
 }
 
+function cwd() {
+  Get-Location | Select-Object -ExpandProperty Path
+}
+
 Set-Alias glog Git-Log
 
 Invoke-Expression (&starship init powershell)
