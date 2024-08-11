@@ -124,12 +124,12 @@ Write-Host '[+] Install Visual Studio Code Insiders' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Microsoft.VisualStudioCode.Insiders
 
 # https://vscodium.com/
-Write-Host '[+] Install VSCodium' -ForegroundColor Magenta
-Install-WinGetPackage -Scope Machine -Id VSCodium.VSCodium
+# Write-Host '[+] Install VSCodium' -ForegroundColor Magenta
+# Install-WinGetPackage -Scope Machine -Id VSCodium.VSCodium
 
 # https://vscodium.com/
-Write-Host '[+] Install VSCodium Insiders' -ForegroundColor Magenta
-Install-WinGetPackage -Scope Machine -Id VSCodium.VSCodium.Insiders
+# Write-Host '[+] Install VSCodium Insiders' -ForegroundColor Magenta
+# Install-WinGetPackage -Scope Machine -Id VSCodium.VSCodium.Insiders
 
 # https://obsidian.md/
 Write-Host '[+] Install Obsidian' -ForegroundColor Magenta
@@ -169,6 +169,10 @@ Install-WinGetPackage -Scope Machine -Id Microsoft.Skype
 Write-Host '[+] Install Postman' -ForegroundColor Magenta
 Install-WinGetPackage -Id Postman.Postman
 
+# https://get.adobe.com/reader/
+Write-Host '[+] Install Adobe Acrobat Reader' -ForegroundColor Magenta
+Install-WinGetPackage -Id Adobe.Acrobat.Reader.64-bit
+
 # https://www.figma.com/
 Write-Host '[+] Install Figma' -ForegroundColor Magenta
 Install-WinGetPackage -Id Figma.Figma
@@ -207,3 +211,7 @@ Install-ScoopPackage -Global main/groovy
 # https://go.dev/
 Write-Host '[+] Install Go' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id GoLang.Go
+
+# https://www.edrlab.org/software/thorium-reader/
+Write-Host '[+] Install Thorium Reader for .epub files' -ForegroundColor Magenta
+Install-WinGetPackage -Id EDRLab.Thorium
