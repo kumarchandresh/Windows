@@ -79,6 +79,14 @@ if ($terminalDir) {
 Write-Host '[+] Install "git" for Windows' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Git.Git; Restore-EnvPath
 
+# https://junegunn.github.io/fzf/
+Write-Host '[+] Install "fzf"' -ForegroundColor Magenta
+Install-WinGetPackage -Id junegunn.fzf; Restore-EnvPath
+
+# https://junegunn.github.io/vim-plug/
+Write-Host '[+] Install vim-plug (plugin manager for Vim)' -ForegroundColor Magenta
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | New-Item $HOME/vimfiles/autoload/plug.vim -Force
+
 # https://scoop.sh/
 Write-Host '[+] Install Scoop' -ForegroundColor Magenta
 if (!(Test-IsCommandAvailable scoop)) {
@@ -110,6 +118,16 @@ Install-ScoopPackage -Global nerd-fonts/CascadiaCode-NF
 # https://notepad-plus-plus.org/
 Write-Host '[+] Install Notepad++' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Notepad++.Notepad++
+
+# https://www.vim.org/
+Install-WinGetPackage -Scope Machine -Id vim.vim; Restore-EnvPath
+if (!(Test-IsCommandAvailable vim)) {
+    $defaultDir = Join-Path $env:ProgramFiles 'Vim'
+    $vimPath = Get-ChildItem "$defaultDir" -Recurse -Include vim.exe | Select-Object -ExpandProperty Directory | Select-Object -ExpandProperty FullName
+    $oldPath = [Environment]::GetEnvironmentVariable('Path', 'Machine')
+    $newPath = @($oldPath -split ';'; $vimPath) -join ';'
+    [Environment]::SetEnvironmentVariable('Path', $newPath, 'Machine')
+}
 
 # https://neovim.io/
 Write-Host '[+] Install Neovim' -ForegroundColor Magenta
