@@ -150,21 +150,6 @@ Import-Module '$PSScriptRoot\PowerShell\Modules\myWinGet'
 Install-WinGetPackage -Id Spotify.Spotify
 "@
 
-# https://discord.com/
-Write-Host '[+] Install Discord' -ForegroundColor Magenta
-Install-WinGetPackage -Id Discord.Discord
-
-Write-Host '[+] Install WhatsApp' -ForegroundColor Magenta
-Install-WinGetPackage -Source MSStore -Id 9NKSQGP7F2NH
-<#
-# https://www.microsoft.com/en-in/microsoft-teams
-Write-Host '[+] Install MS Teams' -ForegroundColor Magenta
-Install-WinGetPackage -Id Microsoft.Teams
-
-# https://www.skype.com/
-Write-Host '[+] Install Skype' -ForegroundColor Magenta
-Install-WinGetPackage -Scope Machine -Id Microsoft.Skype
-#>
 # https://www.postman.com/
 Write-Host '[+] Install Postman' -ForegroundColor Magenta
 Install-WinGetPackage -Id Postman.Postman
@@ -215,3 +200,24 @@ Install-WinGetPackage -Scope Machine -Id GoLang.Go
 # https://www.edrlab.org/software/thorium-reader/
 Write-Host '[+] Install Thorium Reader for .epub files' -ForegroundColor Magenta
 Install-WinGetPackage -Id EDRLab.Thorium
+
+# ****************************** Socials ************************************* #
+
+# https://discord.com/
+Write-Host '[+] Install Discord' -ForegroundColor Magenta
+Install-WinGetPackage -Id Discord.Discord
+
+Write-Host '[+] Install WhatsApp' -ForegroundColor Magenta
+Install-WinGetPackage -Source MSStore -Id 9NKSQGP7F2NH
+
+# https://slack.com/
+Write-Host '[+] Install Slack' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id SlackTechnologies.Slack
+
+# https://www.microsoft.com/en-in/microsoft-teams
+Write-Host '[+] Install MS Teams' -ForegroundColor Magenta
+Install-WinGetPackage -Id Microsoft.Teams
+
+# https://www.skype.com/
+Write-Host '[+] Install Skype' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id Microsoft.Skype
