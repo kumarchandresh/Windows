@@ -79,6 +79,10 @@ if ($terminalDir) {
 Write-Host '[+] Install "git" for Windows' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Git.Git; Restore-EnvPath
 
+# https://github.com/microsoft/PowerToys
+Write-Host '[+] Install Microsoft PowerToys' -ForegroundColor Magenta
+Install-WinGetPackage -Scope Machine -Id Microsoft.PowerToys
+
 # https://junegunn.github.io/fzf/
 Write-Host '[+] Install "fzf"' -ForegroundColor Magenta
 Install-WinGetPackage -Id junegunn.fzf; Restore-EnvPath
@@ -192,6 +196,12 @@ Invoke-Expression 'nvm install latest; nvm use latest'
 Write-Host '[+] Install Python' -ForegroundColor Magenta
 Install-ScoopPackage -Global main/python
 reg import "$(which python | Split-Path -Parent | Join-Path -ChildPath 'install-pep-514.reg')"
+
+# https://www.mongodb.com/
+Write-Host '[+] Install MongoDB' -ForegroundColor Magenta
+Install-WinGetPackage -Id MongoDB.Server
+Install-WinGetPackage -Id MongoDB.Shell
+Install-WinGetPackage -Id MongoDB.Compass.Full
 
 # https://www.postgresql.org/
 Write-Host '[+] Install PostgreSQL' -ForegroundColor Magenta
