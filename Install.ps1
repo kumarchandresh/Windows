@@ -230,7 +230,7 @@ Write-Host '[+] Install Thorium Reader for .epub files' -ForegroundColor Magenta
 Install-WinGetPackage -Id EDRLab.Thorium
 
 # ****************************** Socials ************************************* #
-
+<#
 # https://discord.com/
 Write-Host '[+] Install Discord' -ForegroundColor Magenta
 Install-WinGetPackage -Id Discord.Discord
@@ -245,7 +245,4 @@ Install-WinGetPackage -Scope Machine -Id SlackTechnologies.Slack
 # https://www.microsoft.com/en-in/microsoft-teams
 Write-Host '[+] Install MS Teams' -ForegroundColor Magenta
 Install-WinGetPackage -Id Microsoft.Teams
-
-# https://www.skype.com/
-Write-Host '[+] Install Skype' -ForegroundColor Magenta
-Install-WinGetPackage -Scope Machine -Id Microsoft.Skype
+#>
