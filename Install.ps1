@@ -8,6 +8,7 @@ Import-Module "$PSScriptRoot\PowerShell\Modules\myUtils" -Force
 Import-Module "$PSScriptRoot\PowerShell\Modules\myGsudo" -Force
 Import-Module "$PSScriptRoot\PowerShell\Modules\myScoop" -Force
 Import-Module "$PSScriptRoot\PowerShell\Modules\myWinGet" -Force
+Import-Module "$PSScriptRoot\PowerShell\Modules\myFont" -Force
 
 if (!(Test-IsProcessElevated)) {
     Write-Error -Message '[?] Should be run from elevate PowerShell' -ErrorAction Stop
@@ -111,6 +112,28 @@ Install-ScoopPackage -Global nerd-fonts/FiraCode-NF
 Write-Host '[+] Install Nerd Font: Cascadia Code' -ForegroundColor Magenta
 Install-ScoopPackage -Global nerd-fonts/CascadiaCode-NF
 
+# https://github.com/notofonts/latin-greek-cyrillic/releases
+Write-Host "[+] Install Font: Noto Sans Mono" -ForegroundColor Magenta
+Install-FontFromGitHub -repoUrl "https://github.com/notofonts/latin-greek-cyrillic/releases" `
+                       -fontName "NotoSansMono" `
+                       -versionPattern "NotoSansMono-v(\d+\.\d+)" `
+                       -zipUrlTemplate "https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSansMono-v{version}/NotoSansMono-v{version}.zip" `
+                       -fontFolderPath "NotoSansMono/hinted/ttf"
+
+Write-Host '[+] Install Nerd Font: Noto Sans Mono' -ForegroundColor Magenta
+Install-ScoopPackage -Global nerd-fonts/Noto-NF
+
+# https://github.com/be5invis/Iosevka/releases
+Write-Host "[+] Install Font: Iosevka" -ForegroundColor Magenta
+Install-FontFromGitHub -repoUrl "https://github.com/be5invis/Iosevka/releases" `
+                       -fontName "Iosevka" `
+                       -versionPattern "v(\d+\.\d+\.\d+)" `
+                       -zipUrlTemplate "https://github.com/be5invis/Iosevka/releases/download/v{version}/PkgTTC-Iosevka-{version}.zip" `
+                       -fontFolderPath "."
+
+Write-Host '[+] Install Nerd Font: Iosevka' -ForegroundColor Magenta
+Install-ScoopPackage -Global nerd-fonts/Iosevka-NF
+
 # https://notepad-plus-plus.org/
 Write-Host '[+] Install Notepad++' -ForegroundColor Magenta
 Install-WinGetPackage -Scope Machine -Id Notepad++.Notepad++
@@ -205,8 +228,9 @@ Install-WinGetPackage -Id MongoDB.Compass.Full
 
 # https://www.postgresql.org/
 Write-Host '[+] Install PostgreSQL' -ForegroundColor Magenta
+if ([bool](Get-Service -Name PostgreSQL)) { Stop-Service -Name PostgreSQL }
 Install-ScoopPackage -Global main/postgresql
-if (![bool](Get-Service PostgreSQL -ea SilentlyContinue)) { pg_ctl register -N PostgreSQL }
+if (![bool](Get-Service -Name PostgreSQL -ea SilentlyContinue)) { pg_ctl register -N PostgreSQL }
 if ((Get-Service -Name PostgreSQL).Status -ne 'Running') { Start-Service -Name PostgreSQL }
 
 # https://www.oracle.com/java/
