@@ -3,7 +3,10 @@ $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Console]::InputEncoding = [Text.UTF8Encoding]::new()
 
 Import-Module -Force posh-git
+Import-Module -Force PSFzf
 Import-Module -Force Terminal-Icons
+
+Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 
 function which {
   (Get-Command $args -CommandType Application, ExternalScript -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty Source) -replace [Regex]::Escape($env:USERPROFILE), '~'
